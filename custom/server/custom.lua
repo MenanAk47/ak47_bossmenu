@@ -1,0 +1,2 @@
+-- Custom server hooks and integrations for server developers
+-- You can add custom logging or third-party banking bridges here

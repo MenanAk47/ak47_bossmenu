@@ -1,0 +1,2 @@
+-- Custom client hooks and integrations for server developers
+-- You can add custom target, notification, or opening triggers here

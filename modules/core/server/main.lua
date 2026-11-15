@@ -1,0 +1,69 @@
+CreateThread(function()
+    print(string.format('^2[ak47_bossmenu]^0 Initialized on framework: ^3%s^0', Lib47.Framework))
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:getInitialData', function(source, groupName, groupType)
+    groupType = groupType or 'job'
+    if not Permissions.IsBoss(source, groupName, groupType) then
+        return nil
+    end
+
+    return {
+        groupName = groupName,
+        groupType = groupType,
+        balance = Society.GetBalance(groupName),
+        employees = Employees.GetList(groupName, groupType),
+        grades = Grades.GetList(groupName, groupType),
+        myGrade = Permissions.GetGradeLevel(source, groupName, groupType),
+        myCid = Lib47.GetIdentifier(source),
+        enableStash = Config.EnableStash,
+        enableWardrobe = Config.EnableWardrobe,
+    }
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:deposit', function(source, groupName, amount)
+    return Society.Deposit(source, groupName, amount)
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:withdraw', function(source, groupName, amount)
+    return Society.Withdraw(source, groupName, amount)
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:updateGrade', function(source, targetCid, groupName, groupType, newGrade)
+    return Employees.UpdateGrade(source, targetCid, groupName, groupType, newGrade)
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:fireEmployee', function(source, targetCid, groupName, groupType)
+    return Employees.Fire(source, targetCid, groupName, groupType)
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:hireEmployee', function(source, targetSource, groupName, groupType)
+    return Employees.Hire(source, targetSource, groupName, groupType)
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:updateSalary', function(source, groupName, gradeLevel, newSalary)
+    return Grades.UpdateSalary(source, groupName, gradeLevel, newSalary)
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:getNearbyPlayers', function(source)
+    local players = {}
+    local srcPed = GetPlayerPed(source)
+    local srcCoords = GetEntityCoords(srcPed)
+
+    for _, playerId in ipairs(GetPlayers()) do
+        local targetId = tonumber(playerId)
+        if targetId and targetId ~= source then
+            local targetPed = GetPlayerPed(targetId)
+            local dist = #(srcCoords - GetEntityCoords(targetPed))
+            if dist <= 10.0 then
+                table.insert(players, {
+                    source = targetId,
+                    name = Lib47.GetCharacterName(targetId),
+                    cid = Lib47.GetIdentifier(targetId),
+                })
+            end
+        end
+    end
+
+    return players
+end)
