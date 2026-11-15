@@ -30,15 +30,21 @@ Lib47.Callback.Register('ak47_bossmenu:server:withdraw', function(source, groupN
 end)
 
 Lib47.Callback.Register('ak47_bossmenu:server:updateGrade', function(source, targetCid, groupName, groupType, newGrade)
-    return Employees.UpdateGrade(source, targetCid, groupName, groupType, newGrade)
+    local success, message = Employees.UpdateGrade(source, targetCid, groupName, groupType, newGrade)
+    local employees = success and Employees.GetList(groupName, groupType) or nil
+    return success, message, employees
 end)
 
 Lib47.Callback.Register('ak47_bossmenu:server:fireEmployee', function(source, targetCid, groupName, groupType)
-    return Employees.Fire(source, targetCid, groupName, groupType)
+    local success, message = Employees.Fire(source, targetCid, groupName, groupType)
+    local employees = success and Employees.GetList(groupName, groupType) or nil
+    return success, message, employees
 end)
 
 Lib47.Callback.Register('ak47_bossmenu:server:hireEmployee', function(source, targetSource, groupName, groupType)
-    return Employees.Hire(source, targetSource, groupName, groupType)
+    local success, message = Employees.Hire(source, targetSource, groupName, groupType)
+    local employees = success and Employees.GetList(groupName, groupType) or nil
+    return success, message, employees
 end)
 
 Lib47.Callback.Register('ak47_bossmenu:server:updateSalary', function(source, groupName, gradeLevel, newSalary)
