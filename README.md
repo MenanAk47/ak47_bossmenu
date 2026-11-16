@@ -4,8 +4,14 @@
 [![Support](https://img.shields.io/badge/Support-Community-blue?style=flat-square)](https://discord.gg/menanak47)
 
 High-performance, modern multi-framework Boss & Gang Management System for FiveM powered by `ak47_lib` and React 18 + TSX + Tailwind CSS, featuring full 100% drop-in compatibility for **ESX Society**, **QBCore Management**, and **Qbox Management**.
-
----
+<p align="center">
+    <img width="320" alt="bossmenu 1" src="https://github.com/user-attachments/assets/7acc9e78-76de-4739-9907-485ea3f26e86" />
+    <img width="320" alt="bossmenu 2" src="https://github.com/user-attachments/assets/142f83f1-721c-499d-ab00-db85dd7f8865" />
+</p>
+<p align="center">
+    <img width="320" alt="bossmenu 3" src="https://github.com/user-attachments/assets/0641f009-abad-4ef3-8e64-587f9c98bfc3" />
+    <img width="320" alt="bossmenu 4" src="https://github.com/user-attachments/assets/e7a57c08-be66-4e41-a7f0-d8cdbe2d9f7e" />
+</p>
 
 ## ⚡ Features
 
@@ -60,8 +66,38 @@ Config.BossGrades = {
 -- Quick Action Features
 Config.EnableStash = true
 Config.EnableWardrobe = true
+Config.EnableMoneyWash = true
 
--- Organization Menu Locations
+Config.Stash = {
+    weight = 1000, -- Maximum stash capacity in KG
+    slots = 100,   -- Maximum stash slots
+}
+
+Config.BlackMoney = {
+    esx = {
+        IsAccount = true,
+        AccountName = 'black_money',
+        --ItemName = 'markedbills',
+        --HasMetaData = true,
+        --MetaKey = 'worth',
+    },
+    qb = {
+        --IsAccount = true,
+        --AccountName = 'black_money',
+        ItemName = 'markedbills',
+        HasMetaData = true,
+        MetaKey = 'worth',
+    },
+    qbx = {
+        --IsAccount = true,
+        --AccountName = 'black_money',
+        ItemName = 'markedbills',
+        HasMetaData = true,
+        MetaKey = 'worth',
+    }
+}
+
+-- Boss Menu Locations
 Config.Menus = {
     ['police'] = {
         label = 'Police Management',
