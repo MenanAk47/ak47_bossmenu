@@ -10,10 +10,13 @@ function Society.Deposit(source, groupName, amount)
         return false, _U('invalid_amount')
     end
 
-    if not Lib47.RemoveMoney(source, 'money', amount) then
+    local currentBalance = Lib47.GetMoney(source, 'money') 
+
+    if currentBalance and currentBalance < amount then
         return false, _U('insufficient_player_funds')
     end
 
+    Lib47.RemoveMoney(source, 'money', amount)
     Lib47.AddSocietyMoney(groupName, amount, 'Boss Deposit')
     SendDiscordLog('Society Deposit', string.format('%s deposited $%s into %s', Lib47.GetCharacterName(source), amount, groupName), 65280)
     return true, _U('society_deposit_success', amount)
@@ -25,11 +28,15 @@ function Society.Withdraw(source, groupName, amount)
         return false, _U('invalid_amount')
     end
 
-    if not Lib47.RemoveSocietyMoney(groupName, amount, 'Boss Withdrawal') then
+    local currentSocietyBalance = Society.GetBalance(groupName)
+
+    if currentSocietyBalance < amount then
         return false, _U('insufficient_funds')
     end
 
+    Lib47.RemoveSocietyMoney(groupName, amount, 'Boss Withdrawal')
     Lib47.AddMoney(source, 'money', amount)
+
     SendDiscordLog('Society Withdrawal', string.format('%s withdrew $%s from %s', Lib47.GetCharacterName(source), amount, groupName), 16711680)
     return true, _U('society_withdraw_success', amount)
 end

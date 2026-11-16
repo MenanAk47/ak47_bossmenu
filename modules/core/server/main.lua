@@ -1,6 +1,5 @@
-CreateThread(function()
-    print(string.format('^2[ak47_bossmenu]^0 Initialized on framework: ^3%s^0', Lib47.Framework))
-end)
+Lib47.IsVersionCompatible('2.1.3')
+Lib47.EnsureAnyDependency({'ak47_target', 'ox_target', 'qb-target', 'qtarget'})
 
 Lib47.Callback.Register('ak47_bossmenu:server:getInitialData', function(source, groupName, groupType)
     groupType = groupType or 'job'
