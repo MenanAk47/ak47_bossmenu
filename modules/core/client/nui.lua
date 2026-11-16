@@ -46,6 +46,16 @@ RegisterNUICallback('withdraw', function(data, cb)
     })
 end)
 
+RegisterNUICallback('washMoney', function(data, cb)
+    local success, message, newBalance, blackMoney = Lib47.Callback.Await('ak47_bossmenu:server:washMoney', nil, data.groupName, data.amount)
+    cb({
+        success = success,
+        message = message,
+        balance = newBalance,
+        blackMoney = blackMoney,
+    })
+end)
+
 RegisterNUICallback('updateGrade', function(data, cb)
     local success, message, employees = Lib47.Callback.Await('ak47_bossmenu:server:updateGrade', nil, data.cid, data.groupName, data.groupType, data.newGrade)
     cb({ success = success, message = message, employees = employees })

@@ -16,9 +16,34 @@ Config.BossGrades = {
 -- Quick Action Features
 Config.EnableStash = true
 Config.EnableWardrobe = true
+Config.EnableMoneyWash = true
 Config.Stash = {
     weight = 1000, -- Maximum stash capacity in KG
     slots = 100,   -- Maximum stash slots
+}
+
+Config.BlackMoney = {
+    esx = {
+        IsAccount = true,
+        AccountName = 'black_money',
+        --ItemName = 'markedbills',
+        --HasMetaData = true,
+        --MetaKey = 'worth',
+    },
+    qb = {
+        --IsAccount = true,
+        --AccountName = 'black_money',
+        ItemName = 'markedbills',
+        HasMetaData = true,
+        MetaKey = 'worth',
+    },
+    qbx = {
+        --IsAccount = true,
+        --AccountName = 'black_money',
+        ItemName = 'markedbills',
+        HasMetaData = true,
+        MetaKey = 'worth',
+    }
 }
 
 -- Boss Menu Locations

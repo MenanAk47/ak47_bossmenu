@@ -18,7 +18,15 @@ Lib47.Callback.Register('ak47_bossmenu:server:getInitialData', function(source, 
         myCid = Lib47.GetIdentifier(source),
         enableStash = Config.EnableStash,
         enableWardrobe = Config.EnableWardrobe,
+        enableMoneyWash = Config.EnableMoneyWash,
+        blackMoney = Config.EnableMoneyWash and MoneyWash.GetPlayerBlackMoney(source) or 0,
     }
+end)
+
+Lib47.Callback.Register('ak47_bossmenu:server:washMoney', function(source, groupName, amount)
+    local success, message, newBalance = MoneyWash.Wash(source, groupName, amount)
+    local blackMoney = Config.EnableMoneyWash and MoneyWash.GetPlayerBlackMoney(source) or 0
+    return success, message, newBalance, blackMoney
 end)
 
 Lib47.Callback.Register('ak47_bossmenu:server:deposit', function(source, groupName, amount)
