@@ -5,8 +5,8 @@ version '1.0.0'
 author 'MenanAk47'
 lua54 'yes'
 
---ui_page 'web/index.html'
-ui_page 'http://localhost:5173'
+ui_page 'web/index.html'
+--ui_page 'http://localhost:5173'
 
 files {
     'web/**/*',

@@ -48,6 +48,8 @@ Config.BlackMoney = {
 
 -- Boss Menu Locations
 Config.Menus = {
+    --[[
+    
     ['police'] = {
         label = 'Police Management',
         type = 'job', -- 'job' or 'gang'
@@ -76,4 +78,6 @@ Config.Menus = {
         size = vector3(1.5, 1.5, 2.0),
         rotation = 0.0,
     },
+
+    ]]
 }
